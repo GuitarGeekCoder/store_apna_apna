@@ -18,7 +18,6 @@ def create_store_group(apps, schema_editor):
     order_content_type = ContentType.objects.get_for_model(Order)
     order_item_content_type = ContentType.objects.get_for_model(OrderItem)
 
-
     # Define the required permissions for Store and Product
     store_permissions = [
         Permission.objects.get_or_create(
@@ -79,8 +78,8 @@ def create_store_group(apps, schema_editor):
     ]
     order_item_permissions = [
         Permission.objects.get_or_create(
-            codename='view_order',
-            name='Can view order',
+            codename='view_order_item',
+            name='Can view order item',
             content_type=order_item_content_type
         ),
     ]

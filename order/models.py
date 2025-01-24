@@ -1,11 +1,11 @@
 from django.db import models
-from store.models import Product
+from store.models import Product,Store
 from account.models import User
 
 
 # Create your models here.
 class Order(models.Model):
-    # Product = models.ManyToManyField(Product)
+    store = models.ForeignKey(Store,on_delete=models.CASCADE)
     order_date = models.DateField(auto_now_add=True)
     status = models.CharField(
         max_length=30,

@@ -82,3 +82,9 @@ def fetch_active_product(id):
     except Exception as e:
         print("Exception in fetching active product:",str(e))
         return None
+def fetch_store_by_id(id):
+    try:
+        return Store.objects.filter(pk=id).first()
+    except Exception as e:
+        print("Exception in getting the store:",str(e))
+        return None    

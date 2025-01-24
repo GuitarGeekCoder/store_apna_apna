@@ -106,8 +106,8 @@ class ProductAdmin(admin.ModelAdmin):
     display_image.short_description = 'Product Image'  # Column name in the admin table
 
 
-    list_display = ("name", "price", "status", "display_image")  # Show store information
-    search_fields = ("name", "price", "status")
+    list_display = ("name", "price", "status", "display_image","quantity")  # Show store information
+    search_fields = ("name", "price", "status","quantity")
 
 
 
