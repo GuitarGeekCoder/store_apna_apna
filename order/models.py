@@ -20,6 +20,9 @@ class Order(models.Model):
         ],
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    store_amount = models.FloatField(help_text="Amount received by the store owner including delivery charges.")
+    platform_amount = models.FloatField(help_text="Amount received by the platform.")
+
 
     def __str__(self):
         return f"Order #{self.id} - {self.order_date}"

@@ -5,8 +5,8 @@ from rest_framework import status
 from rest_framework.decorators import action
 from .serializer import PlaceOrderSerializer
 from rest_framework import viewsets
-
-
+from django.conf import settings
+import razorpay
 # Create your views here.
 class Orders(viewsets.GenericViewSet):
     def get_serializer(self):
@@ -19,7 +19,6 @@ class Orders(viewsets.GenericViewSet):
         if serializer:
             serializer = serializer(data=request.data)
             if serializer.is_valid():
-                # serializer.validate_data
                 data = serializer.save()
                 if data:
                     return Response({"msg":"Order placed successfully"},status=status.HTTP_200_OK)

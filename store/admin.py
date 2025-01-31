@@ -12,6 +12,7 @@ class StoreAdmin(admin.ModelAdmin):
         if not request.user.is_superuser:
             form.base_fields.pop("user", None)
             form.base_fields.pop("status", None)
+            form.base_fields.pop("platform_fees",None)
         return form
 
     def add_view(self, request, form_url="", extra_context=None):

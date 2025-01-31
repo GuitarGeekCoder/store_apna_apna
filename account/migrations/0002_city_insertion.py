@@ -26,7 +26,7 @@ def reverse(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('account', '0003_city_user_city'),  # Replace with your last migration file
+        ('account', '0001_initial'),  # Replace with your last migration file
     ]
 
     operations = [

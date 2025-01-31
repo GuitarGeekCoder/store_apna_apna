@@ -37,6 +37,8 @@ class Store(models.Model):
         blank=False,  # Makes the field mandatory
         null=False,
     )
+    delivery_charge_per_km = models.IntegerField(default=10,help_text="The delivery charge per kilometer. This amount will be multiplied by the distance (in kilometers) to calculate the total delivery charge for an order.")
+    platform_fees = models.IntegerField(default=10,help_text="Percentage of the total order amount to be charged as platform fee for this store.")
 
     class Meta:
         db_table = "store"

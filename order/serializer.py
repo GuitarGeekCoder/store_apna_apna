@@ -1,16 +1,16 @@
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 from store.models import Product,fetch_store_by_id
-from account.models import fetch_user,User
+from account.models import fetch_user
 from order.models import Order,OrderItem
 from django.db import transaction
 
 class OrderItemSerializer(serializers.ModelSerializer):
-    product_id = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all(), source='product')
+    product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
 
     class Meta:
         model = OrderItem
-        fields = ['product_id', 'quantity']
+        fields = ['product', 'quantity']
 
 
 
@@ -18,9 +18,11 @@ class PlaceOrderSerializer(serializers.Serializer):
     user = serializers.IntegerField(required=True)
     store = serializers.IntegerField(required=True)
     items = OrderItemSerializer(many=True)
+    store_amount = serializers.FloatField(required=True)
+    platform_amount = serializers.FloatField(required=True)
     class Meta:
         model = Order
-        fields = ['store','user', 'items']
+        fields = ['store','user', 'items','store_amount','platform_amount']
     
     def create(self, validated_data):
         items_data = validated_data.pop('items')
