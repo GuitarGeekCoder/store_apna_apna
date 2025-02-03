@@ -3,15 +3,13 @@ version: '3.8'
 services:
   web:
     build: .
-    container_name: django_web
+    container_name: web_for_store
     command: /bin/bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/app
     ports:
       - "8000:8000"
     env_file: .env
-    depends_on:
-      - db
     networks:
       - django_network
 
