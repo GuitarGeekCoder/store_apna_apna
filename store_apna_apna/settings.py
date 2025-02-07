@@ -33,8 +33,8 @@ SECRET_KEY = os.getenv("SECRET_KEY","")
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS =["http://localhost:5173"]
-CORS_ALLOWED_ORIGINS = ["http://localhost:5173"]  # os.environ.get('ORIGINS', '').split(',')
+CSRF_TRUSTED_ORIGINS =["http://localhost:5173","http://localhost:8000"]
+CORS_ALLOWED_ORIGINS = ["http://localhost:5173","http://localhost:8000"]  # os.environ.get('ORIGINS', '').split(',')
 CORS_ALLOW_CREDENTIALS = True
 
 INSTALLED_APPS = [
@@ -184,7 +184,7 @@ JAZZMIN_SETTINGS = {
 "copyright": "STORE APNA APNA",
 "welcome_sign": "Welcome to the Store Apna Apna",
 "site_logo": 'images/UntitledText.png',
-"user_avatar": "avatar",
+"user_avatar":"avatar",
 "icons": {
         "account":"fas fa-user",
         "account.city": "fas fa-map-marker-alt",
@@ -199,3 +199,11 @@ JAZZMIN_SETTINGS = {
 }
 RAZORPAY_KEY_ID=os.environ.get("RAZORPAY_KEY_ID",None)
 RAZORPAY_KEY_SECRET = os.environ.get("RAZORPAY_KEY_SECRET",None)
+EMAIL_HOST = os.environ.get("EMAIL_HOST","")
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER","")
+DEFAULT_FROM_EMAIL=os.environ.get("DEFAULT_FROM_EMAIL","")
+EMAIL_HOST_PASSWORD=os.environ.get("EMAIL_HOST_PASSWORD","")
+EMAIL_PORT=os.environ.get("EMAIL_PORT","")
+EMAIL_USE_TLS=os.environ.get("EMAIL_USE_TLS","")
+EMAIL_BACKEND=os.environ.get("EMAIL_BACKEND","")
+DEFAULT_TO_EMAIL=os.environ.get("DEFAULT_TO_EMAIL","")

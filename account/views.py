@@ -5,6 +5,9 @@ from .serilaizers import LoginSerializer
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny,IsAuthenticated
+from django.core.mail import send_mail
+from django.http import JsonResponse
+from django.conf import settings
 # Create your views here.
 class AuthenticationViewSet(viewsets.GenericViewSet):
     # permission_classes = [AllowAny]
@@ -45,3 +48,20 @@ class GetUserProfileViewSet(viewsets.GenericViewSet):
         }
 
         return Response(user_data)
+class Mail(viewsets.ViewSet):
+    permission_classes = [AllowAny]
+    @action(methods=["post"],detail=False)
+    def send_mail(self,request):
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        send_mail(
+            subject,
+            email+" Try to contact you: "+message,
+            settings.EMAIL_HOST_USER,
+            [settings.DEFAULT_TO_EMAIL],
+            fail_silently=False,
+        )
+
+        return JsonResponse({'status': 'success', 'message': 'Message sent successfully!'})
