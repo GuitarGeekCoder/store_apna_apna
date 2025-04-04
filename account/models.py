@@ -28,6 +28,7 @@ class User(AbstractUser):
     city = models.ForeignKey(City,on_delete=models.SET_NULL, null=True, blank=True)
     avatar = models.ImageField(upload_to="avatar_images/", blank=True, null=True)
     address = models.TextField(blank=True,null=True)
+    phone_number = models.CharField(max_length=20,default="1234567890")
     class Meta:
         db_table = 'user'
         app_label = 'account'
